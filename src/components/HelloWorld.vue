@@ -18,6 +18,7 @@ export default {
   data () {
     return {
       result: '',
+      rut: '',
       error: ''
     }
   },
@@ -25,6 +26,15 @@ export default {
   methods: {
     onDecode (result) {
       this.result = result
+      this.getRut()
+    },
+
+    getRut () {
+      var regex = '[{0-9}]{7,}/?-.'
+      var rut = this.result.match(regex)
+      this.rut = rut
+      alert(rut)
+
     },
 
     async onInit (promise) {
