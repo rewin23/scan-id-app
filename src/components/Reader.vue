@@ -3,6 +3,7 @@
     <p class="error">{{ error }}</p>
 
     <p class="decode-result">Last result: <b>{{ result }}</b></p>
+    <p>  <strong>INFO: </strong> {{ info }} </p>
 
     <qrcode-stream @decode="onDecode" @init="onInit" />
   </div>
@@ -10,6 +11,7 @@
 
 <script>
 import { QrcodeStream } from 'vue-qrcode-reader'
+import axios from "axios";
 
 export default {
 
@@ -19,6 +21,7 @@ export default {
     return {
       result: '',
       rut: '',
+      info: '',
       error: ''
     }
   },
@@ -27,6 +30,7 @@ export default {
     onDecode (result) {
       this.result = result
       this.getRut()
+      this.getInfo()
     },
 
     getRut () {
@@ -35,6 +39,23 @@ export default {
       this.rut = rut
       alert(rut)
 
+    },
+
+    getInfo () {
+      axios
+            .get('https://siichile.herokuapp.com/consulta',{
+            params: {
+             'rut': this.rut[0]
+            }
+            })
+            .then(response => {
+              this.info = response.data
+            })
+            .catch(error => {
+              console.log(error)
+              this.errored = true
+            })
+        
     },
 
     async onInit (promise) {
