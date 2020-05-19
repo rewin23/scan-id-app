@@ -1,5 +1,7 @@
 # scan-id-app
 
+Read barcode from Chilean ID card and get name from https://siichile.herokuapp.com/consulta API
+
 ## Project setup
 ```
 npm install
