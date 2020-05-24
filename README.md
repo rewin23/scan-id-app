@@ -2,6 +2,8 @@
 
 Read barcode from Chilean ID card and get name from https://siichile.herokuapp.com/consulta API
 
+check https://id-scan-cl.herokuapp.com/ for live demo
+
 ## Project setup
 ```
 npm install
